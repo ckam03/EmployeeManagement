@@ -21,16 +21,6 @@ namespace EmployeeManagement.Controllers
             return departments;
         }
 
-        // GET api/<DepartmentController>/5
-        [HttpGet("{id}")]
-        public async Task GetDepartment(string Name)
-        {
-            var employees = await _context.Departments.Where(x => x.DepartmentName == Name)
-                .Select(n => n.DepartmentName)
-                .Distinct()
-                .ToListAsync();
-            
-        }
 
         // POST api/<DepartmentController>
         [HttpPost]
@@ -38,12 +28,6 @@ namespace EmployeeManagement.Controllers
         {
             await _context.Departments.AddAsync(department);
             await _context.SaveChangesAsync();
-        }
-
-        // PUT api/<DepartmentController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
         }
 
         // DELETE api/<DepartmentController>/5
