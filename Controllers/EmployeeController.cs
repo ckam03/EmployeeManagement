@@ -20,9 +20,12 @@ namespace EmployeeManagement.Controllers
         [HttpGet]
         public async Task<List<Employee>> GetEmployees()
         {
-            var employees = await _context.Employees.ToListAsync();
+            var employees = await _context.Employees
+                .Include(e => e.Department)
+                .ToListAsync();
             return employees;
         }
+        [Route("CreateEmployee")]
         [HttpPost]
         public async Task<Employee> CreateEmployee(Employee employee)
         {
@@ -31,31 +34,32 @@ namespace EmployeeManagement.Controllers
             return employee;
 
         }
+        [Route("EditEmployee")]
         [HttpPut]
         public async Task EditEmployee(Employee employee)
         {
-            var person = await _context.Employees.FindAsync(employee.EmployeeId);
-            if (person is not null)
-            {
-            _context.Employees.Update(person);
-            }
-            _context.SaveChanges();
+                _context.Employees.Update(employee);
+                await _context.SaveChangesAsync();
         }
+        [Route("{id}")]
         [HttpDelete]
-        public async Task DeleteEmployee(int id)
+        public async Task<ActionResult> DeleteEmployee(int id)
         {
+            //var employeeId = Int32.Parse(id);
+            //find employee by id
             var employee = await _context.Employees.FindAsync(id);
-            try
+            if (employee is null)
             {
+                return NotFound();
+            }
+            //disable employee
+            //employee.IsActive = false;
+            //update db
             _context.Remove(employee);
-            _context.SaveChanges();
 
-            }
-            catch (Exception ex)
-            {
-                
-            }
+            await _context.SaveChangesAsync();
+            return NoContent();
 
-        } 
+        }
     }
 }

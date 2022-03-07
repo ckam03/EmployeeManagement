@@ -13,9 +13,7 @@ namespace EmployeeManagement.Models
         public int Salary { get; set; }
         public string Bio { get; set; } = string.Empty;
         public string Photo { get; set; } = string.Empty;
-        public string Department { get; set; } = string.Empty;
-        [Required, MinLength(200)]
-        public string DepartmentDescription { get; set; } = string.Empty;
+        public Department? Department { get; set; }
 
 
     }
