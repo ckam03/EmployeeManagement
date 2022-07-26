@@ -51,19 +51,19 @@ const EmployeeTable = () => {
     getEmployees().then((data) => {
       setEmployees(data)
       console.log(data)
-    })
+    }) 
     return () => {}
   }, [])
   return (
-    <div className="border-2 border-black">
-      <ul className="grid grid-cols-8 border-2 rounded border-black mt-6 font-semibold">
-        <li>Id</li>
-        <li>Name</li>
-        <li>Email</li>
+    <div className="">
+      <ul className="grid grid-cols-8 items-center justify-items-center font-semibold border-b-2 border-gray-300 mt-2 text-gray-500">
+        <li></li>
+        <li>ID</li>
+        <li>Full Name</li>
         <li>Phone Number</li>
-        <li>Salary</li>
-        <li>Bio</li>
         <li>Department</li>
+        <li>Salary</li>
+        <li>Email</li>
         <li>Actions</li>
       </ul>
       {employees.map((employee: Employee) => {

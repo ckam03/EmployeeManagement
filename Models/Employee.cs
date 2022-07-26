@@ -6,14 +6,13 @@ namespace EmployeeManagement.Models
     {
         [Key]
         public int EmployeeId { get; set; }
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
+        public string FullName { get; set; } = string.Empty;
         public string EmailAddress { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public int Salary { get; set; }
         public string Bio { get; set; } = string.Empty;
         public string Photo { get; set; } = string.Empty;
-        public Department? Department { get; set; }
+        public Department Department { get; set; } = new();
 
 
     }

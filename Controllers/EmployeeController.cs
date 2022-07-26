@@ -27,7 +27,7 @@ namespace EmployeeManagement.Controllers
         }
         [Route("CreateEmployee")]
         [HttpPost]
-        public async Task<Employee> CreateEmployee(Employee employee)
+        public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
         {
             await _context.Employees.AddAsync(employee);
             await _context.SaveChangesAsync();
@@ -42,7 +42,7 @@ namespace EmployeeManagement.Controllers
                 await _context.SaveChangesAsync();
         }
         [Route("{id}")]
-        [HttpDelete]
+        [HttpPut]
         public async Task<ActionResult> DeleteEmployee(int id)
         {
             //var employeeId = Int32.Parse(id);
